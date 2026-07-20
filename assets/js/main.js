@@ -7,6 +7,7 @@
    4. Active nav link highlighting on scroll
    5. Contact form -> mailto: handler
    6. Footer year
+   7. Back-to-top link (scroll fully to page top)
    ============================================================ */
 
 (function () {
@@ -132,4 +133,23 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  /* ---------- 7. Back-to-top link ----------
+     The `html` element uses `scroll-padding-top` so in-page section
+     links clear the sticky header. That padding also stops a jump to
+     `#top` ~80px short of the real top, so the page never reaches 0.
+     Handle the back-to-top link explicitly and scroll to the very top. */
+     const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+  
+    document.querySelectorAll('a[href="#top"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+      });
+    });  
 })();
