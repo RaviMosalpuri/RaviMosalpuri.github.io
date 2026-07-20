@@ -8,7 +8,6 @@
    5. Contact form -> mailto: handler
    6. Footer year
    7. Back-to-top link (scroll fully to page top)
-   8. Theme toggle (light/dark mode)
    ============================================================ */
 
 (function () {
@@ -153,26 +152,4 @@
         });
       });
     });  
-
-  /* ---------- 8. Theme toggle (light/dark mode) ---------- */
-  // Detect default browser theme
-  const userPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const themeToggle = document.getElementById("themeToggle");
-
-  // Apply the default theme
-  if (userPrefersDark) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-
-  // Add event listener for theme toggle
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      const currentTheme = document.documentElement.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-    });
-  }
-  
 })();
